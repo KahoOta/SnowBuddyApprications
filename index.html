@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>SnowBuddy Finder 🏂 (Vanilla JS)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="wrap">
+      <h1>SnowBuddy Finder 🏂</h1>
+      <p class="subtitle">情報で選ぶスノーボード仲間マッチング</p>
+
+      <div class="tabs">
+        <button id="tabRiders" class="btn">仲間を探す</button>
+        <button id="tabPosts"  class="btn btn-disabled">教える / 教わる</button>
+      </div>
+
+      <!-- タブ：ライダー -->
+      <section id="ridersView" class="card">
+        <h2>検索・絞り込み</h2>
+        <div class="row" style="margin-bottom:8px">
+          <label>ゲレンデ:
+            <select id="filterResort">
+              <option value="すべて">すべて</option>
+              <option>苗場</option><option>白馬</option><option>栂池</option>
+              <option>ニセコ</option><option>ルスツ</option><option>キロロ</option>
+              <option>富良野</option><option>蔵王</option>
+            </select>
+          </label>
+          <label>レベル:
+            <select id="filterLevel">
+              <option value="すべて">すべて</option>
+              <option>初級</option><option>中級</option><option>上級</option>
+            </select>
+          </label>
+          <label>スタイル:
+            <select id="filterStyle">
+              <option value="すべて">すべて</option>
+              <option>カービング</option><option>パーク</option><option>グラトリ</option><option>フリーラン</option>
+            </select>
+          </label>
+          <span class="count" id="matchCount">該当 0 人</span>
+        </div>
+
+        <section class="card" id="riderListCard">
+          <ul id="riderList" class="list"></ul>
+        </section>
+      </section>
+
+      <!-- タブ：募集 -->
+      <section id="postsView" class="card" style="display:none">
+        <h2>教える / 教わる</h2>
+        <form id="postForm" class="grid">
+          <label>タイプ:
+            <select name="type">
+              <option value="teach">教える</option>
+              <option value="learn">教わる</option>
+            </select>
+          </label>
+          <label>技（例: FS180）:<input name="trick" placeholder="FS180" /></label>
+          <label>ゲレンデ:
+            <select name="resort">
+              <option>白馬</option><option>苗場</option><option>栂池</option>
+              <option>ニセコ</option><option>ルスツ</option><option>キロロ</option>
+              <option>富良野</option><option>蔵王</option>
+            </select>
+          </label>
+          <label>募集開始:<input name="startAt" type="datetime-local" /></label>
+          <label>募集終了:<input name="endAt" type="datetime-local" /></label>
+          <label>価格(円・空なら無料):<input name="price" type="number" min="0" /></label>
+          <label>ひとこと:<input name="note" placeholder="レベル目安や集合場所など" /></label>
+          <div class="right"><button class="btn" type="submit">追加</button></div>
+        </form>
+
+        <section class="card" style="margin-top:16px">
+          <h2>募集一覧</h2>
+          <ul id="postList" class="list"></ul>
+          <p id="postEmpty" class="muted" style="display:none">まだ募集がありません。</p>
+        </section>
+      </section>
+    </div>
+  </div>
+
+  <script src="./main.js"></script>
+</body>
+</html>
